@@ -5,7 +5,7 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - name: Check out code
         uses: actions/checkout@v2
       - name: Set up Python
@@ -40,7 +40,10 @@ jobs:
             cd function
             zip -r ../${{ github.sha }}.zip .
       - name: Archive artifact
-          Otherwise, you'll get an error when you try to run the job.
+        uses: actions/upload-artifact@v2
+        with:
+          name: zipped-bundle
+          path: ${{ github.sha }}.zip
 ---
 publish: null
 runs-on: ubuntu-latest
