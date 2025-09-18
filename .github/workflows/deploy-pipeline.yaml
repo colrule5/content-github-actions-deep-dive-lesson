@@ -40,9 +40,9 @@ jobs:
             cd function
             zip -r ../${{ github.sha }}.zip .
       - name: Archive artifact
+          Otherwise, you'll get an error when you try to run the job.
 
-
-      publish:
+publish:
   runs-on: ubuntu-latest
   steps:
     - name: Create release
@@ -56,7 +56,3 @@ jobs:
         body: New release for ${{ github.sha }}. Release notes can be found in the docs.
         draft: false
         prerelease: false
-        uses: actions/upload-artifact@v2
-        with:
-          name: zipped-bundle
-          path: ${{ github.sha }}.zip
